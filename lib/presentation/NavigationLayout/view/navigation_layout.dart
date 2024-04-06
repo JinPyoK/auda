@@ -11,23 +11,44 @@ class NavigationLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Hero(
-          tag: 'appbarlogo',
-          child: Image.asset(
-            AssetPath.appBarLogo,
-            width: 80.w,
-          ),
+        centerTitle: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Hero(
+                  tag: 'appbarlogo',
+                  child: Image.asset(
+                    AssetPath.icon,
+                    width: 30.w,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text("Audio Diary")
+              ],
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
+            )
+          ],
         ),
         backgroundColor: Colors.white,
       ),
       body: CustomRouter.shell!,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         currentIndex: CustomRouter.shell!.currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house), label: "home"),
+              icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.info), label: "my"),
+              icon: FaIcon(FontAwesomeIcons.heart), label: "Following"),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.user), label: "My"),
         ],
         onTap: (index) => CustomRouter.shell!.goBranch(index),
       ),

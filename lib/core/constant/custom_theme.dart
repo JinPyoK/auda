@@ -21,7 +21,10 @@ final _inputDecoTheme = InputDecorationTheme(
 );
 
 const _bottomNavTheme = BottomNavigationBarThemeData(
-    selectedItemColor: CustomColor.mainColor,
-    selectedLabelStyle: TextStyle(
-      fontWeight: FontWeight.bold,
-    ));
+  selectedItemColor: CustomColor.mainColor,
+  unselectedItemColor: Colors.black,
+  selectedLabelStyle:
+      TextStyle(fontWeight: FontWeight.bold, color: CustomColor.mainColor),
+  unselectedLabelStyle: TextStyle(color: Colors.black),
+  showUnselectedLabels: true,
+);
