@@ -1,24 +1,28 @@
+import 'package:auda/presentation/NavigationLayout/view/navigation_layout.dart';
 import 'package:auda/presentation/auth/view/login_screen.dart';
+import 'package:auda/presentation/home/view/home_screen.dart';
+import 'package:auda/presentation/my/view/my_screen.dart';
 import 'package:auda/presentation/splash/view/splash_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 sealed class CustomRouter {
-  // Router Key
-  static final routerKey = GlobalKey<NavigatorState>();
+  // Nav Key
+  static StatefulNavigationShell? shell;
 
   // Router name
   static const splashScreen = 'splashScreen';
   static const loginScreen = 'loginScreen';
+  static const homeScreen = 'homeScreen';
+  static const myScreen = 'myScreen';
 
   // Router
   static final router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/',
     routes: _routes,
   );
 }
 
-final _routes = <GoRoute>[
+final _routes = [
   GoRoute(
     path: '/',
     name: CustomRouter.splashScreen,
@@ -28,5 +32,31 @@ final _routes = <GoRoute>[
     path: '/login',
     name: CustomRouter.loginScreen,
     builder: (context, state) => const LoginScreen(),
+  ),
+  StatefulShellRoute.indexedStack(
+    builder: (context, state, navigationShell) {
+      CustomRouter.shell = navigationShell;
+      return NavigationLayout();
+    },
+    branches: <StatefulShellBranch>[
+      StatefulShellBranch(
+        routes: [
+          GoRoute(
+            path: "/home",
+            name: CustomRouter.homeScreen,
+            builder: (context, state) => const HomeScreen(),
+          ),
+        ],
+      ),
+      StatefulShellBranch(
+        routes: [
+          GoRoute(
+            path: "/my",
+            name: CustomRouter.myScreen,
+            builder: (context, state) => const MyScreen(),
+          ),
+        ],
+      ),
+    ],
   ),
 ];

@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
           width: 150.w,
           height: 100.h,
           child: Hero(
-            tag: "login",
+            tag: "appbarlogo",
             child: Image.asset(
               AssetPath.appBarLogo,
             )

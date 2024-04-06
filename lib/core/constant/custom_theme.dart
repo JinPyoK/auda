@@ -6,6 +6,7 @@ final customTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   textTheme: GoogleFonts.hahmletTextTheme(),
   inputDecorationTheme: _inputDecoTheme,
+  bottomNavigationBarTheme: _bottomNavTheme,
 );
 
 final _inputDecoTheme = InputDecorationTheme(
@@ -18,3 +19,9 @@ final _inputDecoTheme = InputDecorationTheme(
     borderRadius: BorderRadius.circular(12),
   ),
 );
+
+const _bottomNavTheme = BottomNavigationBarThemeData(
+    selectedItemColor: CustomColor.mainColor,
+    selectedLabelStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+    ));

@@ -4,6 +4,6 @@ import 'package:go_router/go_router.dart';
 
 void pushLoginScreen(BuildContext context) {
   Future.delayed(const Duration(seconds: 1), () {
-    context.goNamed(CustomRouter.loginScreen);
+    context.goNamed(CustomRouter.homeScreen);
   });
 }

@@ -18,7 +18,6 @@ class Auda extends StatelessWidget {
       builder: (context, child) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: customTheme,
-        key: CustomRouter.routerKey,
         routerConfig: CustomRouter.router,
       ),
     );

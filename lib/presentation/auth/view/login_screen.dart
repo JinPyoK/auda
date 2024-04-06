@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
               flex: 7,
             ),
             Hero(
-              tag: "login",
+              tag: "appbarlogo",
               child: Image.asset(
                 AssetPath.appBarLogo,
                 width: 180.w,
