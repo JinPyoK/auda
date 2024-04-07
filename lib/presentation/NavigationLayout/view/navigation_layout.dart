@@ -40,7 +40,6 @@ class NavigationLayout extends StatelessWidget {
       ),
       body: CustomRouter.shell!,
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
         currentIndex: CustomRouter.shell!.currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
