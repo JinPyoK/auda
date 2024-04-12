@@ -1,7 +1,7 @@
 import 'package:auda/core/constant/assets_file_path.dart';
 import 'package:auda/core/router/router.dart';
 import 'package:auda/presentation/auth/widget/auth_button.dart';
-import 'package:auda/presentation/common/widget/custom_text_field.dart';
+import 'package:auda/presentation/common/widget/text_field/custom_text_field.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

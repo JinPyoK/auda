@@ -22,11 +22,11 @@ class SplashScreen extends StatelessWidget {
                 .animate(
                   onComplete: (_) => pushLoginScreen(context),
                 )
-                .fadeIn(duration: const Duration(seconds: 2))
+                .fadeIn(duration: const Duration(seconds: 1))
                 .then()
                 .shimmer(
                   color: Colors.white,
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(milliseconds: 1500),
                 ),
           ),
         ),
