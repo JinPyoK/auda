@@ -1,5 +1,7 @@
+import 'package:auda/presentation/common/controller/bottom_audio_bar.dart';
 import 'package:auda/presentation/common/widget/user/user_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -153,8 +155,8 @@ class _FeedBottomState extends State<_FeedBottom> {
                 color: Colors.white,
               ),
               notPlayIcon: FaIcon(
-                key: ValueKey<int>(2),
-                FontAwesomeIcons.pause,
+                key: ValueKey<int>(1),
+                FontAwesomeIcons.play,
                 color: Colors.white,
               ),
             ),
@@ -165,8 +167,9 @@ class _FeedBottomState extends State<_FeedBottom> {
   }
 }
 
-class _CustomFeedButton extends StatefulWidget {
+class _CustomFeedButton extends ConsumerStatefulWidget {
   const _CustomFeedButton({
+    super.key,
     required this.backgroundColor,
     required this.playIcon,
     required this.notPlayIcon,
@@ -177,12 +180,11 @@ class _CustomFeedButton extends StatefulWidget {
   final FaIcon notPlayIcon;
 
   @override
-  State<_CustomFeedButton> createState() => _CustomFeedButtonState();
+  ConsumerState<_CustomFeedButton> createState() => _CustomFeedButtonState();
 }
 
-class _CustomFeedButtonState extends State<_CustomFeedButton> {
+class _CustomFeedButtonState extends ConsumerState<_CustomFeedButton> {
   bool _isClicked = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -190,6 +192,7 @@ class _CustomFeedButtonState extends State<_CustomFeedButton> {
         setState(() {
           _isClicked = !_isClicked;
         });
+        ref.read(showAudioBarProvider.notifier).changeShowAudioBar();
       },
       child: Container(
         width: 30.w,
@@ -201,6 +204,12 @@ class _CustomFeedButtonState extends State<_CustomFeedButton> {
         child: Center(
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 100),
+            transitionBuilder: (child, ani) {
+              return ScaleTransition(
+                scale: ani,
+                child: child,
+              );
+            },
             child: _isClicked ? widget.notPlayIcon : widget.playIcon,
           ),
         ),
