@@ -30,9 +30,17 @@ class NavigationLayout extends StatelessWidget {
                 const Text("Audio Diary")
               ],
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(FontAwesomeIcons.bell),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
+                ),
+              ],
             )
           ],
         ),

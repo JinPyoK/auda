@@ -1,6 +1,8 @@
+import 'package:auda/core/constant/assets_file_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/widget/category/category_list.dart';
+import '../../common/widget/feed/feed.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +14,25 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CategoryList(),
+          const CategoryList(),
+          Feed(
+            nickName: "jinpyo",
+            imgPath: AssetPath.icon,
+            title: "[flutter] 벡터이미지(SVG) 파일 다루기 2탄 - svg image provider",
+            thumbnailPath: AssetPath.appBarLogo,
+          ),
+          Feed(
+            nickName: "jinpyo",
+            imgPath: AssetPath.icon,
+            title: "[flutter] 벡터이미지(SVG) 파일 다루기 2탄 - svg image provider",
+            thumbnailPath: AssetPath.appBarLogo,
+          ),
+          Feed(
+            nickName: "jinpyo",
+            imgPath: AssetPath.icon,
+            title: "[flutter] 벡터이미지(SVG) 파일 다루기 2탄 - svg image provider",
+            thumbnailPath: AssetPath.appBarLogo,
+          ),
         ],
       ),
     );

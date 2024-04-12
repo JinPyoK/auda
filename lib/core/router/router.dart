@@ -1,10 +1,11 @@
-import 'package:auda/presentation/NavigationLayout/view/navigation_layout.dart';
 import 'package:auda/presentation/auth/view/login_screen.dart';
 import 'package:auda/presentation/following/view/following_screen.dart';
 import 'package:auda/presentation/home/view/home_screen.dart';
 import 'package:auda/presentation/my/view/my_screen.dart';
 import 'package:auda/presentation/splash/view/splash_screen.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../presentation/navigation_layout/view/navigation_layout.dart';
 
 sealed class CustomRouter {
   // BottomNav Key
