@@ -1,4 +1,5 @@
 import 'package:auda/presentation/common/controller/bottom_audio_bar.dart';
+import 'package:auda/presentation/common/widget/feed/audio_bar.dart';
 import 'package:auda/presentation/common/widget/user/user_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,7 +49,9 @@ class Feed extends StatelessWidget {
                 title: title,
                 thumbnailPath: thumbnailPath,
               ),
-              const _FeedBottom(),
+              _FeedBottom(
+                title: title,
+              ),
             ],
           )),
     );
@@ -100,16 +103,16 @@ class _MainTitle extends StatelessWidget {
   }
 }
 
-class _FeedBottom extends StatefulWidget {
-  const _FeedBottom({super.key});
+class _FeedBottom extends ConsumerWidget {
+  const _FeedBottom({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
 
   @override
-  State<_FeedBottom> createState() => _FeedBottomState();
-}
-
-class _FeedBottomState extends State<_FeedBottom> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -147,18 +150,22 @@ class _FeedBottomState extends State<_FeedBottom> {
               ),
             ),
             SizedBox(width: 5.w),
-            const _CustomFeedButton(
+            _CustomFeedButton(
               backgroundColor: CustomColor.thirdColor,
-              playIcon: FaIcon(
+              playIcon: const FaIcon(
                 key: ValueKey<int>(1),
                 FontAwesomeIcons.play,
                 color: Colors.white,
               ),
-              notPlayIcon: FaIcon(
+              notPlayIcon: const FaIcon(
                 key: ValueKey<int>(1),
                 FontAwesomeIcons.play,
                 color: Colors.white,
               ),
+              onTap: () {
+                BottomAudioBar.title = title;
+                ref.read(showAudioBarProvider.notifier).changeShowAudioBar();
+              },
             ),
           ],
         )
@@ -167,23 +174,24 @@ class _FeedBottomState extends State<_FeedBottom> {
   }
 }
 
-class _CustomFeedButton extends ConsumerStatefulWidget {
+class _CustomFeedButton extends StatefulWidget {
   const _CustomFeedButton({
-    super.key,
     required this.backgroundColor,
     required this.playIcon,
     required this.notPlayIcon,
+    this.onTap,
   });
 
   final Color backgroundColor;
   final FaIcon playIcon;
   final FaIcon notPlayIcon;
+  final VoidCallback? onTap;
 
   @override
-  ConsumerState<_CustomFeedButton> createState() => _CustomFeedButtonState();
+  State<_CustomFeedButton> createState() => _CustomFeedButtonState();
 }
 
-class _CustomFeedButtonState extends ConsumerState<_CustomFeedButton> {
+class _CustomFeedButtonState extends State<_CustomFeedButton> {
   bool _isClicked = false;
   @override
   Widget build(BuildContext context) {
@@ -192,7 +200,9 @@ class _CustomFeedButtonState extends ConsumerState<_CustomFeedButton> {
         setState(() {
           _isClicked = !_isClicked;
         });
-        ref.read(showAudioBarProvider.notifier).changeShowAudioBar();
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
       },
       child: Container(
         width: 30.w,
