@@ -95,7 +95,7 @@ class _MainTitle extends StatelessWidget {
         if (hasThumbnail)
           Image.asset(
             thumbnailPath!,
-            width: 80.w,
+            width: 70.w,
             height: 60.h,
           ),
       ],

@@ -18,7 +18,7 @@ class _CategoryListState extends ConsumerState<CategoryList> {
     List<bool> _selected = ref.watch(categorySelectedListProvider);
 
     return SizedBox(
-      width: 500.w,
+      width: 320.w,
       height: 40.h,
       child: ListView.separated(
         cacheExtent: Categories.lenght.toDouble() * 2,
