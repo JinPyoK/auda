@@ -113,6 +113,8 @@ class _FeedBottom extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool showAudioBarState = ref.watch(showAudioBarProvider);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -165,6 +167,17 @@ class _FeedBottom extends ConsumerWidget {
               onTap: () {
                 BottomAudioBar.title = title;
                 ref.read(showAudioBarProvider.notifier).changeShowAudioBar();
+
+                if (showAudioBarState) {
+                  Future.delayed(
+                    const Duration(milliseconds: 100),
+                    () {
+                      ref
+                          .read(showAudioBarProvider.notifier)
+                          .changeShowAudioBar();
+                    },
+                  );
+                }
               },
             ),
           ],

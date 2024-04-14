@@ -72,7 +72,7 @@ class HomeScreen extends ConsumerWidget {
             const Align(
               alignment: Alignment.bottomCenter,
               child: BottomAudioBar(),
-            ).animate().slideY(begin: 0.1),
+            ).animate().slideY(begin: 0.1, curve: Curves.linearToEaseOut),
         ],
       ),
     );

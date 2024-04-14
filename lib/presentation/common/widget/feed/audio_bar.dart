@@ -1,4 +1,6 @@
+import 'package:auda/presentation/common/controller/bottom_audio_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -42,13 +44,13 @@ class BottomAudioBar extends StatelessWidget {
                   ),
                   Positioned(
                     top: 15.h,
-                    child: _SpeechOption(
+                    child: const _SpeechOption(
                       optionName: '속도',
                     ),
                   ),
                   Positioned(
                     top: 40.h,
-                    child: _SpeechOption(
+                    child: const _SpeechOption(
                       optionName: '볼륨',
                     ),
                   ),
@@ -56,7 +58,13 @@ class BottomAudioBar extends StatelessWidget {
               ),
             ],
           ),
-          const _PlayButton(),
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _PlayButton(),
+              _CancleButton(),
+            ],
+          ),
         ],
       ),
     );
@@ -102,7 +110,7 @@ class _SpeechOption extends StatefulWidget {
 }
 
 class _SpeechOptionState extends State<_SpeechOption> {
-  double _value = 0;
+  double _value = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +136,30 @@ class _SpeechOptionState extends State<_SpeechOption> {
           inactiveColor: Colors.white,
         ),
       ],
+    );
+  }
+}
+
+class _CancleButton extends ConsumerWidget {
+  const _CancleButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () {
+        ref.read(showAudioBarProvider.notifier).changeShowAudioBar();
+      },
+      child: SizedBox(
+        width: 20.w,
+        height: 25.h,
+        child: const Text(
+          "닫기",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
