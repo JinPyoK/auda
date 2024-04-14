@@ -1,3 +1,5 @@
+import 'package:auda/presentation/my/widget/charts/my_bar_chart.dart';
+import 'package:auda/presentation/my/widget/charts/my_line_chart.dart';
 import 'package:flutter/material.dart';
 
 class MyStatistics extends StatelessWidget {
@@ -5,8 +7,11 @@ class MyStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Statictics"),
+    return ListView(
+      children: [
+        MyLineChart(),
+        MyBarChart(),
+      ],
     );
   }
 }

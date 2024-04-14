@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -18,7 +16,6 @@ class FollowingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool showAudioBar = ref.watch(showAudioBarProvider);
-    log('HomeScreen Rebuild', name: 'Rebuild Following');
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
